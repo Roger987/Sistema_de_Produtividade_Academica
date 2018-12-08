@@ -47,12 +47,43 @@ public class Produtividade{
 				
 				Projetos projeto = new Projetos();
 				
-				projeto.CriarNovoProjeto();
+				projeto.CriarNovoProjeto(lab);
 				
 				lab.projetos.add(projeto);
 				
 				break;
-			
+				
+			case 3:
+				
+				System.out.println("Infome o projeto ao qual deseja alocar um colaborador:");
+				
+				String proj = scanner.nextLine();
+				
+				int i;
+				
+				for(i = 0; i < lab.projetos.size(); i++) {
+					if(proj.equals(lab.projetos.get(i).titulo)) {
+						lab.projetos.get(i).AlocarColaborador(lab.colaboradores);
+					}
+				}
+				
+				break;
+				
+			case 4:
+				
+				System.out.println("Infome o projeto cujo status deseja alterar:");
+				
+				String alterar = scanner.nextLine();
+				
+				for(i = 0; i < lab.projetos.size(); i++) {
+					if(alterar.equals(lab.projetos.get(i).titulo)) {
+						lab.projetos.get(i).AlterarStatus();
+					}
+				}
+				
+				break;
+
+				
 			}
 				
 			

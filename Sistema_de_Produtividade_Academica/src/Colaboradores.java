@@ -7,6 +7,8 @@ public class Colaboradores{
 	public String email;
 	public String tipoproducao;
 	public ArrayList<Projetos> meusprojetos = new ArrayList<Projetos>();
+	public ArrayList<Publicacoes> publicacoes = new ArrayList<Publicacoes>();
+	
 	
 	
 	public void AddColaborador() {
@@ -18,7 +20,7 @@ public class Colaboradores{
 		this.nome = scanner.nextLine();
 		
 		System.out.println("\nInforme o tipo do colaborador:\n"
-				+ "(Tipos possíveis: Alunos de graduação, Alunos de mestrado, Alunos de doutorado, Professores e Pesquisadores.)\n");
+				+ "(Tipos possíveis: Aluno de graduação, Aluno de mestrado, Aluno de doutorado, Professor e Pesquisador.)\n");
 		
 		this.tipo = scanner.nextLine();
 		
