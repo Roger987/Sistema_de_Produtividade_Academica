@@ -6,8 +6,12 @@ public class Colaboradores{
 	public String tipo;
 	public String email;
 	public String tipoproducao;
-	public ArrayList<Projetos> meusprojetos = new ArrayList<Projetos>();
+	public int flag = 0;
+	public ArrayList<String> meusprojetos = new ArrayList<String>();
 	public ArrayList<Publicacoes> publicacoes = new ArrayList<Publicacoes>();
+	public ArrayList<Colaboradores> orientandos = new ArrayList<Colaboradores>();
+	public Colaboradores orientador = new Colaboradores();
+
 	
 	
 	

@@ -21,9 +21,11 @@ public class Produtividade{
 				+ " 2 - Criar novo projeto\n"
 				+ " 3 - Alocar um colaborador a um projeto\n"
 				+ " 4 - Alterar o status de um projeto\n"
-				+ " 5 - Consulta por colaborador\n"
-				+ " 6 - Consulta por projeto\n"
-				+ " 7 - Gerar relatório de produção acadêmica do laboratório\n"
+				+ " 5 - Adicionar publicação\n"
+				+ " 6 - Adicionar orientação\n"
+				+ " 7 - Consulta por colaborador\n"
+				+ " 8 - Consulta por projeto\n"
+				+ " 9 - Gerar relatório de produção acadêmica do laboratório\n"
 				+ " 0 - Sair\n");
 		
 		while(choice != 0) {
@@ -82,19 +84,52 @@ public class Produtividade{
 				}
 				
 				break;
-
+				
+			case 5:
+				
+				Publicacoes publicacao = new Publicacoes();
+				
+				publicacao.AddPublicacao(lab);
+				
+				break;
+				
+			case 6:
+				break;
+				
+			case 7:
+				
+				System.out.println("\nInforme o nome do colaborador:");
+				
+				String search = scanner.nextLine();
+				
+				lab.BuscarColaborador(search);
+				
+				break;
+				
+			case 8:
+				
+				System.out.println("Informe o título do projeto:");
+				
+				search = scanner.nextLine();
+				
+				lab.BuscarProjeto(search);
+				
+				break;
 				
 			}
+			
 				
 			
-			System.out.println("\nInforme a operação desejada:\n"
+			System.out.println("Informe a operação desejada:\n"
 					+ " 1 - Adicionar um novo colaborador\n"
 					+ " 2 - Criar novo projeto\n"
 					+ " 3 - Alocar um colaborador a um projeto\n"
 					+ " 4 - Alterar o status de um projeto\n"
-					+ " 5 - Consulta por colaborador\n"
-					+ " 6 - Consulta por projeto\n"
-					+ " 7 - Gerar relatório de produção acadêmica do laboratório\n"
+					+ " 5 - Adicionar publicação\n"
+					+ " 6 - Adicionar orientação\n"
+					+ " 7 - Consulta por colaborador\n"
+					+ " 8 - Consulta por projeto\n"
+					+ " 9 - Gerar relatório de produção acadêmica do laboratório\n"
 					+ " 0 - Sair\n");
 			
 		}

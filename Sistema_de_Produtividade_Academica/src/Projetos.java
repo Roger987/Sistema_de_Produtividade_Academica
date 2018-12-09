@@ -3,19 +3,19 @@ import java.util.Scanner;
 
 public class Projetos{
 	public String titulo = null;
-	public int datainicio = 0;
-	public int mesinicio = 0;
+	public int datainicio;
+	public int mesinicio;
 	public int anoinicio = 0;
 	public int datatermino ;
 	public int mestermino;
-	public int anotermino;
+	public int anotermino = 0;
 	public float valorfinanciado = 0;
 	public String agenciafinanciadora = null;
 	public String objetivo = null;
 	public String descricao = null;
 	public String status = "Em elaboração";
 	public ArrayList<Colaboradores> participantes = new ArrayList<Colaboradores>();
-	public ArrayList<Colaboradores> orientadores = new ArrayList<Colaboradores>();
+	public ArrayList<Publicacoes> publicacoes = new ArrayList<Publicacoes>();
 	
 	public void CriarNovoProjeto(Laboratorio lab) {
 		
@@ -48,12 +48,23 @@ public class Projetos{
 		this.anoinicio = scanner.nextInt();
 		scanner.nextLine();
 		
+		System.out.println("\nInforme a data de término do projeto, dia, mês e ano, cada um separado por uma quebra de linha:");
+		
+		this.datatermino = scanner.nextInt();
+		scanner.nextLine();
+		
+		this.mestermino = scanner.nextInt();
+		scanner.nextLine();
+		
+		this.anotermino = scanner.nextInt();
+		scanner.nextLine();
+		
 		System.out.println("\nInforme o valor financiado:");
 		
 		this.valorfinanciado = scanner.nextFloat();
 		scanner.nextLine();
 		
-		System.out.println("Você deve adicionar ao menos um professor orientador ao novo projeto. Informe o nome do professor:");
+		System.out.println("Você deve alocar ao menos um professor ao novo projeto. Informe o nome do professor:");
 		
 		String professor = scanner.nextLine();
 		
@@ -61,7 +72,6 @@ public class Projetos{
 		
 		for(i = 0; i < lab.colaboradores.size(); i++) {
 			if(professor.equals(lab.colaboradores.get(i).nome) && "Professor".equals(lab.colaboradores.get(i).tipo)) {
-				this.orientadores.add(lab.colaboradores.get(i));
 				this.participantes.add(lab.colaboradores.get(i));
 			}
 		}
@@ -74,26 +84,35 @@ public class Projetos{
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("\nInforme o nome do colaborador que deseja alocar ao projeto " + this.titulo +":");
-		
-		String nomecolaborador = scanner.nextLine();
-		
-		int i, flag = 0;
-		
-		for(i = 0; i < colaboradores.size(); i++) {
-			if(nomecolaborador.equals(colaboradores.get(i).nome)) {
-				this.participantes.add(colaboradores.get(i));
-				System.out.println("\nSucesso!");
-				flag++;
-				if(colaboradores.get(i).tipo.equals("Professor")) {
-					this.orientadores.add(colaboradores.get(i));
+		if(this.status.equals("Em elaboração")) {
+			
+			System.out.println("\nInforme o nome do colaborador que deseja alocar ao projeto " + this.titulo +":");
+			
+			String nomecolaborador = scanner.nextLine();
+			
+			int i, flag = 0;
+			
+			for(i = 0; i < colaboradores.size(); i++) {
+				if(nomecolaborador.equals(colaboradores.get(i).nome)) {
+					if(colaboradores.get(i).flag < 3) {
+						colaboradores.get(i).meusprojetos.add(this.titulo);
+						this.participantes.add(colaboradores.get(i));
+						colaboradores.get(i).flag++;
+						System.out.println("\nSucesso!");
+						flag++;
+					}
 				}
+			}
+			
+			if(flag == 0) {
+				System.out.println("Ops! Não encontrado!");
 			}
 		}
 		
-		if(flag == 0) {
-			System.out.println("Ops! Não encontrado!");
+		else {
+			System.out.println("O projeto não está em elaboração!");
 		}
+		
 	}
 	
 	public void AlterarStatus() {
@@ -104,19 +123,14 @@ public class Projetos{
 		
 		String novostatus = scanner.nextLine();
 		
-		if(novostatus.equals("Em andamento") && this.titulo != null && this.agenciafinanciadora != null && this.anoinicio != 0 && this.objetivo != null && this.orientadores.size() > 0) {
+		if(novostatus.equals("Em andamento") && this.titulo != null && this.agenciafinanciadora != null && this.anoinicio != 0 && this.anotermino != 0 && this.objetivo != null && this.participantes.size() > 0) {
 			this.status = novostatus;
+			
+			System.out.println("Status alterado para 'Em andamento'com sucesso!");
 		}
 		
-		else if(novostatus.equals("Concluido") && this.status.equals("Em andamento")) {
-			System.out.println("\nInforme a data de término do projeto, dia, mês e ano, cada um separado por uma quebra de linha:");
-			this.datatermino = scanner.nextInt();
-			this.mestermino = scanner.nextInt();
-			this.anotermino = scanner.nextInt();
-			scanner.nextLine();
-			if(this.anotermino >= this.anoinicio) {
+		else if(novostatus.equals("Concluido") && this.status.equals("Em andamento") && this.publicacoes.size() > 0) {
 				this.status = novostatus;
-			}
 		}
 		
 		else {
