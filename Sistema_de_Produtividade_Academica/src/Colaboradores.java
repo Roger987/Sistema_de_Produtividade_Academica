@@ -10,11 +10,9 @@ public class Colaboradores{
 	public ArrayList<String> meusprojetos = new ArrayList<String>();
 	public ArrayList<Publicacoes> publicacoes = new ArrayList<Publicacoes>();
 	public ArrayList<Colaboradores> orientandos = new ArrayList<Colaboradores>();
-	public Colaboradores orientador = new Colaboradores();
+	public Colaboradores orientador;
 
-	
-	
-	
+
 	public void AddColaborador() {
 		
 		Scanner scanner = new Scanner(System.in);

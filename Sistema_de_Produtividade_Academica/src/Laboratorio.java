@@ -34,7 +34,7 @@ public class Laboratorio{
 				System.out.println("Valor financiado: $" + this.projetos.get(i).valorfinanciado);
 				System.out.println("Participantes:");
 				for(j = 0; j < this.projetos.get(i).participantes.size(); j++) {
-					System.out.println("   " + this.projetos.get(i).participantes.get(j));
+					System.out.println("   " + this.projetos.get(i).participantes.get(j).nome);
 				}
 				System.out.println("Produção acadêmica:");
 			}

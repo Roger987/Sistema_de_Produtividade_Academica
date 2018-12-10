@@ -46,7 +46,7 @@ public class Publicacoes{
 		
 		System.out.println("Informe o nome de todos os autores da publicação, quando terminar digite 'Finalizar' para finalizar a operação.");
 		
-		String autor = null;
+		String autor = "inicializando";
 		
 		while(!autor.equals("Finalizar")) {
 			

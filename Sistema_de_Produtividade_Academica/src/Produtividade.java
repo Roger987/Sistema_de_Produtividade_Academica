@@ -94,6 +94,33 @@ public class Produtividade{
 				break;
 				
 			case 6:
+				
+				System.out.println("\nInforme o nome do professor orientador:");
+				
+				String orientador = scanner.nextLine();
+				
+				int j; 
+				
+				String orientado;
+				
+				for(i = 0; i < lab.colaboradores.size(); i++) {
+					if(orientador.equals(lab.colaboradores.get(i).nome)) {
+						if(lab.colaboradores.get(i).tipo.equals("Professor")) {
+							
+							System.out.println("\nInforme o nome do aluno a ser orientado:");
+							
+							orientado = scanner.nextLine();
+							
+							for(j = 0; j < lab.colaboradores.size(); j++) {
+								if(orientado.equals(lab.colaboradores.get(j).nome)) {
+									lab.colaboradores.get(i).orientandos.add(lab.colaboradores.get(j));
+									lab.colaboradores.get(j).orientador = lab.colaboradores.get(i);
+								}
+							}
+						}
+					}
+				}
+				
 				break;
 				
 			case 7:
