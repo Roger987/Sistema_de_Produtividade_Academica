@@ -64,7 +64,7 @@ public class Projetos{
 		this.valorfinanciado = scanner.nextFloat();
 		scanner.nextLine();
 		
-		System.out.println("Você deve alocar ao menos um professor ao novo projeto. Informe o nome do professor:");
+		System.out.println("\nVocê deve alocar ao menos um professor ao novo projeto. Informe o nome do professor:");
 		
 		String professor = scanner.nextLine();
 		
@@ -73,10 +73,11 @@ public class Projetos{
 		for(i = 0; i < lab.colaboradores.size(); i++) {
 			if(professor.equals(lab.colaboradores.get(i).nome) && "Professor".equals(lab.colaboradores.get(i).tipo)) {
 				this.participantes.add(lab.colaboradores.get(i));
+				lab.colaboradores.get(i).meusprojetos.add(this);
 			}
 		}
 		
-		System.out.println("Novo projeto criado com sucesso!");
+		System.out.println("\nNovo projeto criado com sucesso!");
 		
 	}
 	
@@ -95,7 +96,7 @@ public class Projetos{
 			for(i = 0; i < colaboradores.size(); i++) {
 				if(nomecolaborador.equals(colaboradores.get(i).nome)) {
 					if(colaboradores.get(i).flag < 3) {
-						colaboradores.get(i).meusprojetos.add(this.titulo);
+						colaboradores.get(i).meusprojetos.add(this);
 						this.participantes.add(colaboradores.get(i));
 						colaboradores.get(i).flag++;
 						System.out.println("\nSucesso!");
@@ -105,12 +106,12 @@ public class Projetos{
 			}
 			
 			if(flag == 0) {
-				System.out.println("Ops! Não encontrado!");
+				System.out.println("\nOps! Não encontrado!");
 			}
 		}
 		
 		else {
-			System.out.println("O projeto não está em elaboração!");
+			System.out.println("\nO projeto não está em elaboração!");
 		}
 		
 	}
@@ -124,17 +125,40 @@ public class Projetos{
 		String novostatus = scanner.nextLine();
 		
 		if(novostatus.equals("Em andamento") && this.titulo != null && this.agenciafinanciadora != null && this.anoinicio != 0 && this.anotermino != 0 && this.objetivo != null && this.participantes.size() > 0) {
+			
 			this.status = novostatus;
 			
-			System.out.println("Status alterado para 'Em andamento'com sucesso!");
+			System.out.println("\nStatus alterado para 'Em andamento'com sucesso!");
 		}
 		
 		else if(novostatus.equals("Concluido") && this.status.equals("Em andamento") && this.publicacoes.size() > 0) {
-				this.status = novostatus;
+				
+			this.status = novostatus;
+			
+			System.out.println("\nStatus alterado para 'Concluido'com sucesso!");
+
 		}
 		
 		else {
 			System.out.println("\nErro! Tente novamente!");
 		}
 	}
+	
+	public void OrdenarPublicacoes() {
+		
+		int i, j;
+		Publicacoes aux;
+		
+		for(j = this.publicacoes.size() - 1; j>= 0; j--) {
+			for(i = 0; i < j; i++) {
+				if(this.publicacoes.get(i).ano < this.publicacoes.get(i+1).ano) {
+					aux = this.publicacoes.get(i);
+					this.publicacoes.set(i, this.publicacoes.get(i+1));
+					this.publicacoes.set(i+1, aux);
+				}
+			}
+		}
+	}
+	
+
 }

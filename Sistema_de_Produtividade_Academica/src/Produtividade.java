@@ -8,7 +8,7 @@ public class Produtividade{
 		
 		int choice = -1;
 		
-		System.out.println("Bem-vind@! Digite o nome do laboratório:");
+		System.out.println("\nBem-vind@! Digite o nome do laboratório:");
 		
 		String nomelab = scanner.nextLine();
 		
@@ -57,7 +57,7 @@ public class Produtividade{
 				
 			case 3:
 				
-				System.out.println("Infome o projeto ao qual deseja alocar um colaborador:");
+				System.out.println("\nInfome o projeto ao qual deseja alocar um colaborador:");
 				
 				String proj = scanner.nextLine();
 				
@@ -73,7 +73,7 @@ public class Produtividade{
 				
 			case 4:
 				
-				System.out.println("Infome o projeto cujo status deseja alterar:");
+				System.out.println("\nInfome o projeto cujo status deseja alterar:");
 				
 				String alterar = scanner.nextLine();
 				
@@ -90,6 +90,8 @@ public class Produtividade{
 				Publicacoes publicacao = new Publicacoes();
 				
 				publicacao.AddPublicacao(lab);
+				
+				lab.totalpublicacoes++;
 				
 				break;
 				
@@ -121,6 +123,8 @@ public class Produtividade{
 					}
 				}
 				
+				lab.totalorientacoes++;
+				
 				break;
 				
 			case 7:
@@ -135,7 +139,7 @@ public class Produtividade{
 				
 			case 8:
 				
-				System.out.println("Informe o título do projeto:");
+				System.out.println("\nInforme o título do projeto:");
 				
 				search = scanner.nextLine();
 				
@@ -143,11 +147,38 @@ public class Produtividade{
 				
 				break;
 				
+			case 9:
+				int elaboracao = 0, andamento = 0, concluido = 0;
+				
+				System.out.println("\nRELATÓRIO DE PRODUÇÃO ACADÊMICA:\n");
+				
+				System.out.println("Número de colaboradores: " + lab.colaboradores.size());
+				for(i = 0; i < lab.projetos.size(); i++) {
+					if(lab.projetos.get(i).status.equals("Em elaboração")) {
+						elaboracao++;
+					}
+				}
+				System.out.println("Numero de projetos em elaboração: " + elaboracao);
+				for(i = 0; i < lab.projetos.size(); i++) {
+					if(lab.projetos.get(i).status.equals("Em andamento")) {
+						andamento++;
+					}
+				}
+				System.out.println("Número de projetos em andamento: " + andamento);
+				for(i = 0; i < lab.projetos.size(); i++) {
+					if(lab.projetos.get(i).status.equals("Concluido")) {
+						concluido++;
+					}
+				}
+				System.out.println("Número de projetos concluídos: " + concluido);
+				System.out.println("Número total de projetos: " + lab.projetos.size());
+				System.out.println("Número total de orientações: " + lab.totalorientacoes + "\nNúmero total de publicações: "
+						+ lab.totalpublicacoes + "\nNúmero total de produção acadêmica: " + (lab.totalorientacoes+lab.totalpublicacoes));
 			}
 			
 				
 			
-			System.out.println("Informe a operação desejada:\n"
+			System.out.println("\nInforme a operação desejada:\n"
 					+ " 1 - Adicionar um novo colaborador\n"
 					+ " 2 - Criar novo projeto\n"
 					+ " 3 - Alocar um colaborador a um projeto\n"

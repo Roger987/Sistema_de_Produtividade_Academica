@@ -10,7 +10,7 @@ public class Publicacoes{
 	
 	public void AddPublicacao(Laboratorio lab) {
 		
-		System.out.println("Informe o título da publicação:");
+		System.out.println("\nInforme o título da publicação:");
 		
 		Scanner scanner = new Scanner(System.in);
 		
@@ -20,18 +20,18 @@ public class Publicacoes{
 		
 		this.titulo = scanner.nextLine();
 		
-		System.out.println("Informe o nome da conferência onde foi publicada:");
+		System.out.println("\nInforme o nome da conferência onde foi publicada:");
 		
 		this.conferencia = scanner.nextLine();
 		
-		System.out.println("Está associada a algum projeto? Digite 1 caso sim, e 2 caso não.");
+		System.out.println("\nEstá associada a algum projeto? Digite 1 caso sim, e 2 caso não.");
 		
 		int proj = scanner.nextInt();
 		scanner.nextLine();
 		
 		if(proj == 1) {
 			
-			System.out.println("Informe o título do projeto asociado à publicação:");
+			System.out.println("\nInforme o título do projeto asociado à publicação:");
 			
 			projetoassociado = scanner.nextLine();
 			
@@ -40,11 +40,19 @@ public class Publicacoes{
 					this.projeto = projetoassociado;
 					lab.projetos.get(i).publicacoes.add(this);
 				}
+				else if(projetoassociado.equals(lab.projetos.get(i).titulo) && !lab.projetos.get(i).status.equals("Em andamento")) {
+					System.out.println("Erro! O projeto não está em andamento!");
+				}
 			}
 			
 		}
 		
-		System.out.println("Informe o nome de todos os autores da publicação, quando terminar digite 'Finalizar' para finalizar a operação.");
+		System.out.println("\nInforme o ano de publicação:");
+		
+		this.ano = scanner.nextInt();
+		scanner.nextLine();
+		
+		System.out.println("\nInforme o nome de todos os autores da publicação, quando terminar digite 'Finalizar' para finalizar a operação.");
 		
 		String autor = "inicializando";
 		
