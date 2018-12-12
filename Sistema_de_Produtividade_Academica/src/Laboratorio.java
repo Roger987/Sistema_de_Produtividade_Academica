@@ -31,6 +31,12 @@ public class Laboratorio{
 					System.out.println("          Ano de publicação: " + this.colaboradores.get(i).publicacoes.get(j).ano);
 
 				}
+				if(this.colaboradores.get(i).tipo.equals("Professor")) {
+					System.out.println("Alunos orientados:");
+					for(j = 0; j < this.colaboradores.get(i).orientandos.size(); j++) {
+						System.out.println("   " + this.colaboradores.get(i).orientandos.get(j).nome);
+					}
+				}
 			}
 		}
 		
